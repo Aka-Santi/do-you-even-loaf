@@ -7,3 +7,59 @@ Final Project 1 for Data Mining CDS303. In this project we explore a dataset wit
 | Service_Business_Code | Unique code identifying each business category | Numerical(int64) | Contextual variable | Used to identify & filter fitness-related + bakery-related businesses |
 | Service_Business_Name | Type of business cateory | Categorical(object) | Contextual variable | Used to select relevant business categories. Supplementary to Service_Business_Code |
 | Monthly_Sales_Count | Mnothly # of sales transactions for each business category in a commercial district | Numerical(int64) | Clustering input | Used to compare fitness and bakery commercial activity. Sales counts should be aggregated by district and business category, then scled to make districts comparable. |
+
+Variable Selection and Rationale
+
+1. Relationship Between Clustering Variables & Research Question
+
+Our research question is "Does seoul bulk or cut". 
+
+We plan to use bakery sales share and gym store share as our main clustering variables. We will use Monthly_Sales_count as our main clustering input to compare transaction activity between bakery and fitness business categories. Service_Business_Code and Service_Business_Name will help us identify the relevant businesses, while Commercial_District_Name will be used to group the observations by location.
+
+By comparing the transaction patterns, we aim to identify different commercial district profiles, such as fitness-oriented, bakery-oriented, or mixed districts.
+
+We also plan to use supplementary obesity rate data to examine whether the resulting clusters show differences in local obesity rates.
+
+2. Candidate Predictors for Classification
+
+After generating the clusters, we plan to use classification to understand the characteristics that distinguish them.
+
+Our main candidate predictors will be fitness-related and bakery-related transaction counts derived from Monthly_Sales_Count, organized by business category. This will allow us to examine how transaction activity differs across clusters.
+
+Service_Business_Code and Service_Business_Name will help us identify the business categories used to construct these predictors.
+
+The target variable will be the cluster labels generated during clustering. 
+
+Since classification will use the same transaction information as clustering, its purpose will be to characterize the clusters rather than independently validate them.
+
+We will separately compare the resulting clusters with obesity rate data as an external validation step. Obesity rates will not be used to generate the original cluster labels.
+
+3. Variables to Be Excluded as Identifiers
+
+Several variables will be excluded from direct clustering inputs:
+- Standard_Year_Quarter_quarter_Code: Used to identify the time period.
+- Commercial_District_Name: Used to identify and group commercial districts
+- Service_Business_Code: Used to identify business categories
+- Service_Business_Name: Provides business category information that overlaps with Service_Business_Code
+
+These variables will remain useful for organizing, interpreting and evaluating the results.
+
+4. Data Preparation Needs
+
+Missing Values
+There were no missing values in the original dataset.
+
+Scaling
+Monthly_Sales_Count may differ across commercial districts and business categories due to differences in transaction activity. We plan to aggregate transaction counts by district and business category. Depending on the results, we might need to consider scaling to prevent variables with larger numerical ranges from dominating the clustering results.
+
+Categorical Encoding
+Commercial_District_Name and Service_Business_Name are categorical variables, while Service_Business_Code represents categorical information through codes. Since these variables will mainly be used for identification and filtering, categorical encoding is not currently necessary for clustering. If categorical variables are later used directly in classification, we will consider appropriate encoding methods.
+
+Data Aggregation
+The original dataset contains observations organized by commercial district, business category, and quarter. We plan to organize the data at the commercial district level to compare fitness-related and bakery-related transaction activity.
+
+We will also determine how to handle quarterly observations to ensure consistent comparison across districts.
+** the original dataset that we have rightnow is 2025 Q1,Q2,Q3,Q4
+
+Supplementary Data Integration
+We plan to incorporate an additional dataset containing obesity rates in Seoul. We will examine whether this dataset can be connected to our commercial district
