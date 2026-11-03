@@ -12,27 +12,39 @@
 
 ## Project Overview
 
+**Team Members:** 
+Santiago Rodriguez Gomez, Saebom Park
+
 ### Research Question
-
 > Can Seoul's commercial districts be grouped based on fitness and bakery transaction activity, and what characteristics distinguish these groups?
-**Team Members:** Santiago Rodriguez Gomez, Saebom Park
-
-**Dataset:** Seoul Commercial Trade Area Analytics
-
-**Period:** 2025 Q1-Q4
 
 **Goal:** Identify commercial district profiles through explainable cluster analysis and explore their relationship with regional obesity rates.
 
+### Current Dataset:
+**Seoul Commercial Trade Area Analytics: Estimated Sales by Commercial District (서울시 상권분석서비스 추정매출-상권)**
+- **Provider:** Seoul Metropolitan Government / Seoul Credit Guarantee Foundation, via Seoul Open Data Plaza
+- **Source:** https://data.seoul.go.kr/dataList/OA-15572/S/1/datasetView.do
+- **Period:** 2025, Q1 to Q4
+- **Size:** 85,732 rows × 55 columns (translated from Korean to English by our team)
+
+The dataset reports estimated card sales for 1,577 commercial districts across Seoul, broken down by 62 categories. For each district, category and quarter it gives the total amount and number of transactions, plus the same figures split by weekday vs weekend, day of the week, time of day, customer gender, and customer age group. Districts are classified into four types:
+- Alley commercial areas
+- Developed commercial areas
+- Traditional markets
+- Tourist special zones
+
 ---
+
+# Session 1
 
 ## Research Methodology
 Our project follows a 4-step explainable cluster analysis framework.
 1. **Data Preprocessing** - Prepare and organize the dataset.
 2. **Dimensionality Reduction** - Reduce unnecessary complexity.
 3. **Clustering** - Identify groups of commercial districts.
-4. **Clasification** - Explain the characteristics that distinguish the clusters.
+4. **Classification** - Explain the characteristics that distinguish the clusters.
 
-We also plan to compare the resulting clusters with supplementary obesity rate data.
+As part of our goal we plan to compare the resulting clusters with supplementary obesity rate data.
 
 
 ---
@@ -48,19 +60,19 @@ Step 1: Data Preprocessing
 The purpose of data preprocessing is to ensure data quality and obtain reliable results. Since real world data is often incomplete, noisy, or inconsistent, this step involves handling missing values, detecting outliers, scaling data, and handling mixed data types.
 
 Step 2: Dimensionality Reduction
-Dimensionality reduction reduces the number of variables to a manageable level for human comprehension. It improves interpretability and helps avoid the curse of dimensionality, where the number of instance increases exponentially to achieve the same explanation ability when the number of variables increases.
+Dimensionality reduction reduces the number of variables to a smaller set that people can interpret. It also helps avoid the curse of dimensionality: as the number of variables grows, distances between observations become less meaningful, which weakens distance-based methods like k-means. The framework uses Sparse PCA (SPCA) for numerical variables, where each component depends on only a few original variables so it is easier to name, and Multiple Correspondence Analysis (MCA) for categorical variables.
 
 Step 3: Clustering
 Clustering is an unsupervised learning method that groups similar observations together. Its purpose is to discover meaningful patterns within the dataset without using predefined class labels.
 
 Step 4: Classification for Explainability
-Classification uses the cluster labels generated in the precious step as target variables. This transforms the clustering results into a classification task, helping us understand which features distinguish the clusters. 
+Classification uses the cluster labels generated in the previous step as target variables. This transforms the clustering results into a classification task, helping us understand which features distinguish the clusters. 
 
 ### 2. Why Do Clustering Results Need Interpretation?
 Clustering is useful for extracting knowledge from large datasets because it can identify patterns without predefined labels. Interpretation is important because the results of machine learning models should be understandable to humans. By interpreting clusters, we can extract meaningful knowledge and improve decision-making processes. This helps different stakeholders translate clustering results into actionable insights.
 
 ### 3. How Can Classification Help Characterize Clusters?
-After clustering, the generated cluster labels can be used as target variables in a classification model. Decision trees are commonly used because they can produce decision rules that help explain why observations belong to certain clusters.
+After clustering, the generated cluster labels can be used as target variables in a classification model. If the classifier can predict the cluster membership accurately, the patterns it learns show what separates the clusters. Earlier work often used decision trees for this because they produce readable rules. The framework in the paper uses a pipeline with a feature selection (random forest and recursive feature elimination) hyperparameter tuning with cross-validation, and an XGBoost classifier, then explains the model with SHAP values. The trained classifier can also assign new observations to existing clusters. 
 
 The paper also describes several approaches to interpreting clustering results:
 
@@ -141,5 +153,46 @@ The original dataset contains observations organized by commercial district, bus
 We will also determine how to handle quarterly observations to ensure consistent comparison across districts.
 ** the original dataset that we have rightnow is 2025 Q1,Q2,Q3,Q4
 
-#### Supplementary Data Integration
-We plan to incorporate an additional dataset containing obesity rates in Seoul. We will examine whether this dataset can be connected to our commercial district
+
+## Supplementary Datasets
+
+Data integration is planned for a later session.
+
+### 1. Seoul Commercial District Areas (서울시 상권분석서비스 영역-상권)
+- **Provider:** Seoul Metropolitan Government / Seoul Credit Guarantee Foundation
+- **Source:** https://data.seoul.go.kr/dataList/OA-15560/S/1/datasetView.do
+- **Relevant variables:** Commercial district code, borough (자치구) code and name, location coordinates
+- **Contribution:** Our sales data has no borough column. This file links each district to its borough, which is needed to connect borough-level data such as obesity rates.
+- **Connection:** Shared identifier (Commercial_District_Code).
+
+### 2. Seoul Obesity Statistics (서울시 비만도 통계)
+- **Provider:** Seoul Metropolitan Government, using the KDCA Community Health Survey
+- **Source:** https://data.seoul.go.kr/dataList/DT201004E0500052001/S/2/datasetView.do
+- **Relevant variables:** Borough, year, obesity rate (share of adults with BMI of 25 or higher)
+- **Contribution:** Answers the "bulk or cut" part of our question. After clustering, we will compare obesity rates across clusters to see whether gym-oriented districts are in boroughs with lower obesity.
+- **Connection:** Borough name (through the area file) and time period (2025 survey year). Direct merging is limited because every district in a borough receives the same value, so this dataset provides context for interpreting clusters rather than a clustering feature.
+
+### 3. Seoul Stores by Commercial District (서울시 상권분석서비스 점포-상권)
+- **Provider:** Seoul Metropolitan Government / Seoul Credit Guarantee Foundation
+- **Source:** https://data.seoul.go.kr/dataList/OA-15577/S/1/datasetView.do
+- **Relevant variables:** Year-quarter code, district code, business category code and name, number of stores, opening and closure counts, franchise store count
+- **Contribution:** Measures bakery and gym supply, not just transactions. This helps tell apart districts with many small bakeries from districts with a few high-traffic ones, and franchise counts allow a comparison of chain vs independent bakeries across clusters.
+- **Connection:** Same district codes, business category codes, and quarter codes as our main dataset, so it merges directly.
+
+### 4. Seoul Fitness Center Licenses (서울시 체력단련장업 인허가 정보)
+- **Provider:** Seoul Metropolitan Government (local government licensing data)
+- **Source:** https://data.seoul.go.kr/dataList/OA-16142/A/1/datasetView.do
+- **Relevant variables:** Business name, license date, closure date, business status, road address, coordinates
+- **Contribution:** Counts licensed gyms per borough, adding context on fitness supply beyond the Sports Club and Sports Instruction categories in our sales data.
+- **Connection:** No shared ID. We can count open gyms per borough using the borough in each address, and filter to gyms operating during 2025 using license and closure dates.
+
+---
+
+# Session 2
+*Coming soon.*
+
+# Session 3
+*Coming soon.*
+
+# Session 4
+*Coming soon.*
