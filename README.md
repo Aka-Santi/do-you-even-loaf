@@ -1,5 +1,33 @@
-# do-you-even-loaf
-Final Project 1 for Data Mining CDS303. In this project we explore a dataset with business information...
+<div align="center">
+
+# DO YOU EVEN LOAF? 🍞
+### Does Seoul Bulk or Cut?
+**CDS 303 - Scientific Data Mining | Final Team Project Session 1**
+*Exploring fitness and bakery commercial activity across Seoul*
+</div>
+---
+## Project Overview
+### Research Question
+>Can Seoul's commercial districts be grouped based on fitness and bakery transaction activity, and what characteristics distinguish these groups?
+**Team Members:** Santiago Rodriguez Gomez, Saebom Park
+**Dataset:** Seoul Commercial Trade Area Analytics
+**Period:** 2025 Q1-Q4
+**Goal:** Identify commercial district profiles through explainable cluster analysis and explore their relationship with regional obesity rates.
+---
+
+## REsearch Methodology
+Our project follows a 4-step explainable cluster analysis framework.
+1. **Data Preprocessing** - Prepare and organize the dataset.
+2. **Dimensionality Reduction** - Reduce unnecessary complexity.
+3. **Clustering** - Identify groups of commercial districts.
+4. **Clasification** - Explain the characteristics that distinguish the clusters.
+
+We also plan to compare the resulting clusters with supplementary obesity rate data.
+---
+
+## Variable Selection
+The following variables were selected from our original dataset.
+
 | Variable | Description and unit | Data type | Proposed role | Rationale / preparation needed |
 | --- | --- | --- | --- | --- |
 | Standard_Year_Quarter_Code | Year and quarter of the recorded sales data (ex 20251 = 2025 Q1) | Numerical (int64) | Contextual variable | Used to identify the time period. Data may need to be aggregated across quarters or filtered to a specific quarter|
@@ -8,9 +36,9 @@ Final Project 1 for Data Mining CDS303. In this project we explore a dataset wit
 | Service_Business_Name | Type of business cateory | Categorical(object) | Contextual variable | Used to select relevant business categories. Supplementary to Service_Business_Code |
 | Monthly_Sales_Count | Mnothly # of sales transactions for each business category in a commercial district | Numerical(int64) | Clustering input | Used to compare fitness and bakery commercial activity. Sales counts should be aggregated by district and business category, then scled to make districts comparable. |
 
-Variable Selection and Rationale
+## Variable Selection and Rationale
 
-1. Relationship Between Clustering Variables & Research Question
+### 1. Relationship Between Clustering Variables & Research Question
 
 Our research question is "Does seoul bulk or cut". 
 
@@ -20,7 +48,7 @@ By comparing the transaction patterns, we aim to identify different commercial d
 
 We also plan to use supplementary obesity rate data to examine whether the resulting clusters show differences in local obesity rates.
 
-2. Candidate Predictors for Classification
+### 2. Candidate Predictors for Classification
 
 After generating the clusters, we plan to use classification to understand the characteristics that distinguish them.
 
@@ -34,7 +62,7 @@ Since classification will use the same transaction information as clustering, it
 
 We will separately compare the resulting clusters with obesity rate data as an external validation step. Obesity rates will not be used to generate the original cluster labels.
 
-3. Variables to Be Excluded as Identifiers
+### 3. Variables to Be Excluded as Identifiers
 
 Several variables will be excluded from direct clustering inputs:
 - Standard_Year_Quarter_quarter_Code: Used to identify the time period.
@@ -44,22 +72,22 @@ Several variables will be excluded from direct clustering inputs:
 
 These variables will remain useful for organizing, interpreting and evaluating the results.
 
-4. Data Preparation Needs
+### 4. Data Preparation Needs
 
-Missing Values
+#### Missing Values
 There were no missing values in the original dataset.
 
-Scaling
+#### Scaling
 Monthly_Sales_Count may differ across commercial districts and business categories due to differences in transaction activity. We plan to aggregate transaction counts by district and business category. Depending on the results, we might need to consider scaling to prevent variables with larger numerical ranges from dominating the clustering results.
 
-Categorical Encoding
+#### Categorical Encoding
 Commercial_District_Name and Service_Business_Name are categorical variables, while Service_Business_Code represents categorical information through codes. Since these variables will mainly be used for identification and filtering, categorical encoding is not currently necessary for clustering. If categorical variables are later used directly in classification, we will consider appropriate encoding methods.
 
-Data Aggregation
+#### Data Aggregation
 The original dataset contains observations organized by commercial district, business category, and quarter. We plan to organize the data at the commercial district level to compare fitness-related and bakery-related transaction activity.
 
 We will also determine how to handle quarterly observations to ensure consistent comparison across districts.
 ** the original dataset that we have rightnow is 2025 Q1,Q2,Q3,Q4
 
-Supplementary Data Integration
+#### Supplementary Data Integration
 We plan to incorporate an additional dataset containing obesity rates in Seoul. We will examine whether this dataset can be connected to our commercial district
