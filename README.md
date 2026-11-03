@@ -8,6 +8,7 @@
 *Exploring fitness and bakery commercial activity across Seoul*
 </div>
 ---
+
 ## Project Overview
 
 ### Research Question
