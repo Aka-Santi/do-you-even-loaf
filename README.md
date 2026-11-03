@@ -38,7 +38,8 @@ We also plan to compare the resulting clusters with supplementary obesity rate d
 ---
 
 ## Paper Summary: Explainable Cluster Analysis
-Method Article : A Comprehensive Framework for Explainable Cluster Analysis (2024)
+Method Article : A Comprehensive Framework for Explainable Cluster Analysis (2024) 
+
 Application Article : Uncovering student profiles. An explainable cluster analysis approach to PISA 2022 (2024)
 
 ### 1. Purpose of the Four Step Framework
