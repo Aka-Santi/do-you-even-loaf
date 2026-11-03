@@ -156,7 +156,6 @@ We will also determine how to handle quarterly observations to ensure consistent
 ---
 
 ## Supplementary Datasets
-
 Data integration is planned for a later session.
 
 ### 1. Seoul Commercial District Areas (서울시 상권분석서비스 영역-상권)
