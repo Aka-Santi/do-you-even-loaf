@@ -160,8 +160,6 @@ The original dataset contains observations organized by commercial district, bus
 We will also determine how to handle quarterly observations to ensure consistent comparison across districts.
 ** the original dataset that we have rightnow is 2025 Q1,Q2,Q3,Q4
 
----
-
 
 ## Supplementary Datasets
 Data integration is planned for a later session.
