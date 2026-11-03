@@ -34,6 +34,47 @@ Our project follows a 4-step explainable cluster analysis framework.
 
 We also plan to compare the resulting clusters with supplementary obesity rate data.
 
+
+---
+
+## Paper Summary: Explainable Cluster Analysis
+Method Article : A Comprehensive Framework for Explainable Cluster Analysis (2024)
+Application Article : Uncovering student profiles. An explainable cluster analysis
+approach to PISA 2022 (2024)
+
+### 1. Purpose of the Four Step Framework
+
+Step 1: Data Preprocessing
+The purpose of data preprocessing is to ensure data quality and obtain reliable results. Since real world data is often incomplete, noisy, or inconsistent, this step involves handling missing values, detecting outliers, scaling data, and handling mixed data types.
+
+Step 2: Dimensionality Reduction
+Dimensionality reduction reduces the number of variables to a manageable level for human comprehension. It improves interpretability and helps avoid the curse of dimensionality, where the number of instance increases exponentially to achieve the same explanation ability when the number of variables increases.
+
+Step 3: Clustering
+Clustering is an unsupervised learning method that groups similar observations together. Its purpose is to discover meaningful patterns within the dataset without using predefined class labels.
+
+Step 4: Classification for Explainability
+Classification uses the cluster labels generated in the precious step as target variables. This transforms the clustering results into a classification task, helping us understand which features distinguish the clusters. 
+
+### 2. Why Do Clustering Results Need Interpretation?
+Clustering is useful for extracting knowledge from large datasets because it can identify patterns without predefined labels. Interpretation is important because the results of machine learning models should be understandable to humans. By interpreting clusters, we can extract meaningful knowledge and improve decision-making processes. This helps different stakeholders translate clustering results into actionable insights.
+
+### 3. How Can Classification Help Characterize Clusters?
+After clustering, the generated cluster labels can be used as target variables in a classification model. Decision trees are commonly used because they can produce decision rules that help explain why observations belong to certain clusters.
+
+The paper also describes several approaches to interpreting clustering results:
+
+#### 1) Cluster Comparison: 
+Compare the mean values of variables within each cluster against the overall dataset to identify distinctive characteristics.
+#### 2) Classification Model Performance: 
+Evaluate how well the classification model predicts the generated cluster labels.
+#### 3) SHAP Analysis:
+Use SHAP values to examine how individual features contribute to the classification model's predictions.
+
+By combining cluster comparison with SHAP analysis, we can better  understand and label the identified clusters.
+
+
+
 ---
 
 ## Variable Selection
