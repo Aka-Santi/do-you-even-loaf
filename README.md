@@ -33,6 +33,7 @@ Our project follows a 4-step explainable cluster analysis framework.
 4. **Clasification** - Explain the characteristics that distinguish the clusters.
 
 We also plan to compare the resulting clusters with supplementary obesity rate data.
+
 ---
 
 ## Variable Selection
