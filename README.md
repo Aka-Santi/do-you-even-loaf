@@ -2,20 +2,27 @@
 
 # DO YOU EVEN LOAF? 🍞
 ### Does Seoul Bulk or Cut?
+
 **CDS 303 - Scientific Data Mining | Final Team Project Session 1**
+
 *Exploring fitness and bakery commercial activity across Seoul*
 </div>
 ---
 ## Project Overview
+
 ### Research Question
->Can Seoul's commercial districts be grouped based on fitness and bakery transaction activity, and what characteristics distinguish these groups?
+
+> Can Seoul's commercial districts be grouped based on fitness and bakery transaction activity, and what characteristics distinguish these groups?
 **Team Members:** Santiago Rodriguez Gomez, Saebom Park
+
 **Dataset:** Seoul Commercial Trade Area Analytics
+
 **Period:** 2025 Q1-Q4
+
 **Goal:** Identify commercial district profiles through explainable cluster analysis and explore their relationship with regional obesity rates.
 ---
 
-## REsearch Methodology
+## Research Methodology
 Our project follows a 4-step explainable cluster analysis framework.
 1. **Data Preprocessing** - Prepare and organize the dataset.
 2. **Dimensionality Reduction** - Reduce unnecessary complexity.
