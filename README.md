@@ -7,6 +7,7 @@
 
 *Exploring fitness and bakery commercial activity across Seoul*
 </div>
+
 ---
 
 ## Project Overview
@@ -21,6 +22,7 @@
 **Period:** 2025 Q1-Q4
 
 **Goal:** Identify commercial district profiles through explainable cluster analysis and explore their relationship with regional obesity rates.
+
 ---
 
 ## Research Methodology
