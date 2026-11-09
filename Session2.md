@@ -1,5 +1,11 @@
 # Session 2
 
+## The Refined Research Question
+
+```
+
+```
+
 ## Our Supplementary Data
 What each row represents in the combined dataset.
 Which identifiers connect the datasets.
