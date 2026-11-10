@@ -23,34 +23,34 @@ Standardize variables where appropriate and explain why.
 The patterns and differences...
 
 ### Audience
-Primary Audience: Urban Health Researchers
+- Urban Planners: Professionals responsible for urban development and designing healthier living environments.
 
-Researchers studying the relationship between urban environments and public health, such as those at the Seoul Institute. Its 2021 study combined commercial sales, environmental, and health data to investigate obesity-related factors across Seoul.
+- Public Health Policymakers: Government officials developing policies to address obesity and regional health disparities.
 
-Secondary Audience: Public Health Center Planners (보건소)
-
-Staff responsible for obesity prevention and physical activity programs, such as those operated by Gwanak-gu Public Health Center.
+- Public Health Program Planners: Local public health center staff responsible for planning and implementing community health programs.
 
 ### Relevance
 
-Previous research, including the Seoul Institute (2021) and Shon and Yoon (2025), has examined relationships between urban environments and obesity.
+Previous studies, including the Seoul Institute (2021) and Shon and Yoon (2025), suggest that obesity-related factors can differ across regions and that urban environments play an important role in public health.
 
-Our project extends this perspective by identifying fitness- and bakery-related commercial patterns across 행정동 and exploring how these patterns relate to population characteristics and obesity rates.
+Therefore, addressing obesity requires region-specific approaches that consider not only individual behavior but also the physical environment, food environment, and health equity.
+
+Our analysis could help identify regional commercial patterns and highlight areas that may require closer attention, providing governments with additional information for creating healthier and more equitable urban environments.
 
 ### Potential Use
-For researchers: Our clusters could help identify commercial environment patterns worth investigating further, particularly regarding fitness accessibility, food environments, and obesity.
+Our findings could serve as a reference for urban planning, public health initiatives, and further spatial research.
 
-For public health centers: The findings could help identify areas where further assessments of physical activity opportunities or local food environments may be useful.
+Specifically, they may help identify areas where additional investigation into park accessibility, walkability, and local food environments would be valuable.
 
-Since obesity rates are available at the 자치구 level, we will compare them with the distribution of 행정동 clusters within each 자치구. Our results will show associations, not causal relationships.
+For example, regions with relatively high obesity rates and limited fitness-related commercial activity could be prioritized for further assessment of physical activity accessibility.
+
+Since obesity rates are available at the 자치구 level, comparisons will be conducted at an appropriate geographic scale. Our findings will indicate associations rather than causal relationships.
 
 #### References
 
 Park, S., & Yoon, S. (2021). Development of a Big Data Machine Learning Model for Estimating Obesity Factors. Seoul Institute
 
 Shon, C., & Yoon, N. (2025). Environmental Factors Affecting Obesity in Urban Residents in Metropolitan Area. Research Article
-
-Gwanak-gu Public Health Center. Physical Activity Programs
 
 ## Applying our PCA
 
