@@ -80,7 +80,7 @@ No categorical variables are encoded.
 
 | Group | Variable | Meaning |
 |---|---|---|
-| Activity | bakery_txn_share | Share of all transactions in the 행정동 made at bakeries |
+| Activity | bakery_txn_share | Share of all transactions made at bakeries |
 | | gym_txn_share | Share of all transactions made at gyms |
 | Timing | gym_morning_share | Share of gym transactions between 06:00 and 11:00 |
 | | gym_evening_share | Share of gym transactions between 17:00 and 24:00 |
