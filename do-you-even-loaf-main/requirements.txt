@@ -1,9 +1,0 @@
-pandas>=2.0
-numpy
-geopandas>=0.14
-shapely>=2.0
-pyproj
-matplotlib
-seaborn
-scikit-learn
-jupyter
