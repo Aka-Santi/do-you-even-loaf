@@ -38,8 +38,18 @@ Created by `notebooks/01_data_integration.ipynb`.
 | dong_features_2025.csv | One row per 행정동 (365 rows): identifiers, the 8 PCA variables (before transformation), and context variables (population, workplace share, obesity) |
 | dong_pca_input_standardized.csv | The 8 PCA variables after transformation and standardization (365 × 8). This is the PCA input |
 
+Created by `notebooks/02_pca.ipynb`.
+| File | Description |
+|---|---|
+| dong_pca_scores.csv | PC1–PC4 scores for each 행정동 (365 × 4), created by `02_pca.ipynb` |
+| pca_loadings.csv | Loadings of the 8 variables on PC1–PC4 (8 × 4), created by `02_pca.ipynb` |
+| pca_explained_variance.csv | Eigenvalue and explained variance ratio for all 8 components, created by `02_pca.ipynb` |
+
 ## How to reproduce
 
 1. Clone the repository.
 2. Install the requirements: `pip install -r requirements.txt`
 3. Open `notebooks/01_data_integration.ipynb` and run all cells. It reads from `data/raw/` and writes to `data/processed/` and `figures/`.
+4. Open `notebooks/02_pca.ipynb` and run all cells. It reads from `data/processed/` and writes the PCA outputs and figures.
+
+Run the notebooks from inside the `notebooks/` folder, because file paths are relative to it.
