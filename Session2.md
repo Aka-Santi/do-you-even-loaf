@@ -1,6 +1,6 @@
 # Session 2: Data Integration, Research Question & PCA
 
-## The Refined Research Question
+## 1. Research Question & Audience
 
 > **Can Seoul's 행정동 be grouped based on fitness- and bakery-related commercial activity, and what characteristics distinguish these groups?**
 
@@ -36,7 +36,7 @@ Park, S., & Yoon, S. (2021). Development of a Big Data Machine Learning Model fo
 
 Shon, C., & Yoon, N. (2025). Environmental Factors Affecting Obesity in Urban Residents in Metropolitan Area. Research Article
 
-## Data Integration
+## 2. Data Integration & Preprocessing
 
 **What each row represents.** Each row is one 행정동 in 2025. The merged dataset has 425 행정동,
 and 365 remain after handling missing values (see below).
@@ -65,7 +65,7 @@ which is the first five digits of the 행정동 code.
 - Every merge used `validate="one_to_one"`, and the row count stayed at 425 with no duplicate codes.
 - Obesity is measured at the 자치구 level, so every 행정동 in a 자치구 shares the same value. Because this is different geographic unit, obesity is **not** used as a PCA input.
 
-### How we prepared for PCA
+### 2.2 Preparing variables for PCA
 
 **Missing values.** 60 행정동 had no bakery or no gym transactions, so their shares could not be calculated. We dropped them instead of imputing, because imputing would invent customers that do not exist. 365 행정동 remain.
 
@@ -97,7 +97,7 @@ No categorical variables are encoded.
 | Supply | bakery_store_share | Bakeries as a share of all stores |
 | | gym_density | Licensed gyms per 1,000 stores |
 
-**2. Component Selection**
+### 3.2 Component Selection
 
 | Component | Eigenvalue | Explained variance | Cumulative |
 |---|---|---|---|
@@ -125,12 +125,12 @@ No categorical variables are encoded.
 
 > We retain **4 components**. The input variables are only weakly correlated (the strongest correlation is −0.46), so variance is spread across many directions and reaching 80% would require keeping most of them.
 
-**3. Component Interpretation**
+### 3.3 Component Interpretation
 
 ![Loadings heatmap](figures/p3_loadings_heatmap.png)
 
 
-**4. Visualization and Discussion**
+### 3.4 Visualization and Discussion
 
 ![Biplot of PC1 and PC2](figures/p3_biplot.png)
 
