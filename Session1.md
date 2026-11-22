@@ -1,4 +1,27 @@
-# Session 1
+# Session 1: Research Question, Methodology & Variable Selection
+
+> This report reflects our plan at Session 1, based on commercial-district (상권) data.
+> In Session 2 we moved to 행정동-level data and refined the research question. See [Session2.md](Session2.md).
+
+## Research Question
+
+> Can Seoul's commercial districts be grouped based on fitness and bakery transaction activity, and what characteristics distinguish these groups?
+
+**Goal:** Identify commercial district profiles through explainable cluster analysis and explore their relationship with regional obesity rates.
+
+## Original Dataset
+
+**Seoul Commercial Trade Area Analytics: Estimated Sales by Commercial District (서울시 상권분석서비스 추정매출-상권)**
+- **Provider:** Seoul Metropolitan Government / Seoul Credit Guarantee Foundation, via Seoul Open Data Plaza
+- **Source:** https://data.seoul.go.kr/dataList/OA-15572/S/1/datasetView.do
+- **Period:** 2025, Q1 to Q4
+- **Size:** 85,732 rows × 55 columns (translated from Korean to English by our team)
+
+The dataset reports estimated card sales for 1,577 commercial districts across Seoul, broken down by 62 categories. For each district, category and quarter it gives the total amount and number of transactions, plus the same figures split by weekday vs weekend, day of the week, time of day, customer gender, and customer age group. Districts are classified into four types:
+- Alley commercial areas
+- Developed commercial areas
+- Traditional markets
+- Tourist special zones
 
 ## Research Methodology
 Our project follows a 4-step explainable cluster analysis framework.
@@ -46,7 +69,7 @@ Evaluate how well the classification model predicts the generated cluster labels
 #### 3) SHAP Analysis:
 Use SHAP values to examine how individual features contribute to the classification model's predictions.
 
-By combining cluster comparison with SHAP analysis, we can better  understand and label the identified clusters.
+By combining cluster comparison with SHAP analysis, we can better understand and label the identified clusters.
 
 
 
@@ -60,8 +83,8 @@ The following variables were selected from our original dataset.
 | Standard_Year_Quarter_Code | Year and quarter of the recorded sales data (ex 20251 = 2025 Q1) | Numerical (int64) | Contextual variable | Used to identify the time period. Data may need to be aggregated across quarters or filtered to a specific quarter|
 | Commercial_District_Name | Name of the commercial district in Seoul | Categorical (object) | Contextual variable | Used to identify & group observations by commercial district |
 | Service_Business_Code | Unique code identifying each business category | Numerical(int64) | Contextual variable | Used to identify & filter fitness-related + bakery-related businesses |
-| Service_Business_Name | Type of business cateory | Categorical(object) | Contextual variable | Used to select relevant business categories. Supplementary to Service_Business_Code |
-| Monthly_Sales_Count | Mnothly # of sales transactions for each business category in a commercial district | Numerical(int64) | Clustering input | Used to compare fitness and bakery commercial activity. Sales counts should be aggregated by district and business category, then scled to make districts comparable. |
+| Service_Business_Name | Type of business category | Categorical(object) | Contextual variable | Used to select relevant business categories. Supplementary to Service_Business_Code |
+| Monthly_Sales_Count | Monthly # of sales transactions for each business category in a commercial district | Numerical(int64) | Clustering input | Used to compare fitness and bakery commercial activity. Sales counts should be aggregated by district and business category, then scaled to make districts comparable. |
 | Monthly_Sales_Amount | Monthly sales amount (KRW) for each business category in a commercial district | Numerical(int64) | Excluded | Redundant with Monthly_Sales_Count for measuring activity. Raw amounts mostly reflect district size and price differences between categories (a gym membership costs more than a loaf of bread), so transaction counts are used instead |
 | Male_Sales_Count | Monthly # of sales transactions made by male customers for each business category in a commercial district | Numerical(int64) | Clustering input | Used with Female_Sales_Count to compare the gender mix of fitness and bakery customers. Should be aggregated by district and business category, then converted to a share of total transactions so districts are comparable |
 | Female_Sales_Count | Monthly # of sales transactions made by female customers for each business category in a commercial district | Numerical(int64) | Clustering input | Used to calculate the female share of fitness & bakery customers (Female / (Male + Female)). Helps identify gender-specific fitness patterns across districts |
@@ -73,9 +96,9 @@ The following variables were selected from our original dataset.
 
 ### 1. Relationship Between Clustering Variables & Research Question
 
-Our research question is "Does seoul bulk or cut". 
+Our research question asks whether Seoul's commercial districts can be grouped by fitness and bakery activity ("Does Seoul bulk or cut?").
 
-We plan to use bakery sales share and gym store share as our main clustering variables. We will use Monthly_Sales_count as our main clustering input to compare transaction activity between bakery and fitness business categories. Service_Business_Code and Service_Business_Name will help us identify the relevant businesses, while Commercial_District_Name will be used to group the observations by location.
+We plan to use bakery sales share and gym store share as our main clustering variables. We will use Monthly_Sales_Count as our main clustering input to compare transaction activity between bakery and fitness business categories. Service_Business_Code and Service_Business_Name will help us identify the relevant businesses, while Commercial_District_Name will be used to group the observations by location.
 
 By comparing the transaction patterns, we aim to identify different commercial district profiles, such as fitness-oriented, bakery-oriented, or mixed districts.
 
@@ -98,7 +121,7 @@ We will separately compare the resulting clusters with obesity rate data as an e
 ### 3. Variables to Be Excluded as Identifiers
 
 Several variables will be excluded from direct clustering inputs:
-- Standard_Year_Quarter_quarter_Code: Used to identify the time period.
+- Standard_Year_Quarter_Code: Used to identify the time period.
 - Commercial_District_Name: Used to identify and group commercial districts
 - Service_Business_Code: Used to identify business categories
 - Service_Business_Name: Provides business category information that overlaps with Service_Business_Code
@@ -153,5 +176,3 @@ Data integration is planned for a later session.
 - **Relevant variables:** Business name, license date, closure date, business status, road address, coordinates
 - **Contribution:** Counts licensed gyms per borough, adding context on fitness supply beyond the Sports Club and Sports Instruction categories in our sales data.
 - **Connection:** No shared ID. We can count open gyms per borough using the borough in each address, and filter to gyms operating during 2025 using license and closure dates.
-
----
