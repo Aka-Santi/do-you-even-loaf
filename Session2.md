@@ -8,7 +8,7 @@ We aim to identify distinct groups of 행정동 using estimated sales and store 
 
 Specifically, we want to find out whether 행정동 differ in
 
-1. how much local spending goes to fitness vs. bakeries,
+1. how much local spending goes to (fitness vs. bakeries),
 2. when gyms are used (morning vs. evening), and
 3. who the customers are (age and gender).
 
@@ -21,18 +21,10 @@ Specifically, we want to find out whether 행정동 differ in
 
 ### 1.2 Relevance
 
-Previous studies, including Park and Yoon (2021) and Shon and Yoon (2025), suggest that obesity-related factors can differ across regions and that urban environments play an important role in public health.
-
-Therefore, addressing obesity requires region-specific approaches that consider not only individual behavior but also the physical environment, food environment, and health equity.
-
-Our analysis could help identify regional commercial patterns and highlight areas that may require closer attention, providing governments with additional information for creating healthier and more equitable urban environments.
+Previous studies, including Park and Yoon (2021) and Shon and Yoon (2025), suggest that obesity-related factors can differ across regions and that urban environments play an important role in public health. Therefore, addressing obesity requires region-specific approaches that consider not only individual behavior but also the physical environment, food environment, and health equity. Our analysis could help identify regional commercial patterns and highlight areas that may require closer attention, providing governments with additional information for creating healthier and more equitable urban environments.
 
 ### 1.3 Potential Use
-Our findings may help identify areas where additional investigation into park accessibility, walkability, and local food environments would be valuable.
-
-For example, regions with relatively high obesity rates and limited fitness-related commercial activity could be prioritized for further assessment of physical activity accessibility.
-
-Since obesity rates are available at the 자치구 level, comparisons will be conducted at an appropriate geographic scale. Our findings will indicate associations rather than causal relationships.
+Our findings may help identify areas where additional investigation into park accessibility, walkability, and local food environments would be valuable. For example, regions with relatively high obesity rates and limited fitness-related commercial activity could be prioritized for further assessment of physical activity accessibility.
 
 ## 2. Data Integration & Preprocessing
 
@@ -47,9 +39,9 @@ and 365 remain after handling missing values (see below).
 |---|---|---|
 | Estimated sales | 행정동 x service category x quarter | Bakery and gym transactions, time of day, customer age and gender |
 | Stores | 행정동 x service category x quarter | Bakery store share, total store count |
+| Sports facility licenses | One row per facility, with coordinates | Licensed gym count per 행정동 |
 | Resident population | 행정동 x quarter | Context only |
 | Worker population | 행정동 x quarter | Context only |
-| Sports facility licenses | One row per facility, with coordinates | Licensed gym count per 행정동 |
 | Obesity rate | 자치구 | Context only |
 
 "Bakery" is the `Bakery` service category. "Gym" combines `Sports Club` and `Sports Instruction`; golf driving ranges are excluded.
@@ -58,7 +50,7 @@ and 365 remain after handling missing values (see below).
 which is the first five digits of the 행정동 code.
 
 **Aggregation and transformation before merging.**
-- Quarterly rows were collapsed to one row per 행정동. Sales are flows, so the four quarters were **summed**. Store counts and populations are stocks, so the four quarters were **averaged** (a 행정동 with 10 bakeries in every quarter has 10 bakeries, not 40).
+- Quarterly rows were collapsed to one row per 행정동. Sales are flows, so the four quarters were **summed**. Store counts and populations are stocks, so the four quarters were **averaged**.
 - The license data has no 행정동 code and uses 법정동 addresses, so each facility was assigned to a 행정동 with a **spatial join** on its coordinates (EPSG:5174 converted to EPSG:4326). Three 행정동 that were reorganized in the newer boundary file (용신동, 일원2동, 상일동) were mapped back to their earlier codes.
 
 **Checks against duplication and incompatible units.**
