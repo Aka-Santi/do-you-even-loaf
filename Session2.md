@@ -117,7 +117,9 @@ Missing values, transformation, and standardization are described in "How we pre
 | PC7 | 0.556 | 6.9% | 93.5% |
 | PC8 | 0.519 | 6.5% | 100.0% |
 
-![Scree and cumulative explained variance](figures/SCREE_PLOT_FILE.png)
+![Scree plot](figures/p3_scree_plot.png)
+![Cumulative explained variance](figures/p3_cumulative_variance.png)
+
 
 We compared the rules of thumb from the lecture:
 - **80% cumulative variance** would keep 6 components (86.6%), which barely reduces dimensionality.
@@ -133,5 +135,5 @@ We retain **4 components**. The input variables are only weakly correlated (the 
 
 **4. Visualization and Discussion**
 
-![Biplot of PC1 and PC2](figures/p3_biplot_pc1_pc2.png)
+![Biplot of PC1 and PC2](figures/p3_biplot.png)
 
